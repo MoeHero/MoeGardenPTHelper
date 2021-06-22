@@ -1,0 +1,18 @@
+{
+    "name": "MoeGarden PT Helper",
+    "description": "A PT Helper",
+    "version": "0.0.1",
+    "manifest_version": 3,
+    "background": {
+        "service_worker": "/js/background.js"
+    },
+    "icons": {
+        "16": "/images/icon_16.png",
+        "32": "/images/icon_32.png",
+        "48": "/images/icon_48.png",
+        "128": "/images/icon_128.png"
+    },
+    "options_page": "index.html",
+    "permissions": [ "http://*/*", "https://*/*" ],
+    "optional_permissions": [ "http://*/*", "https://*/*" ]
+}
