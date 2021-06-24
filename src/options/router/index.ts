@@ -7,10 +7,17 @@ const routes: Array<RouteConfig> = [
   {
     path: '/',
     redirect: '/dashboard',
+    meta: {
+      inMenu: false,
+    },
   },
   {
     path: '/dashboard',
     component: () => import('../views/Dashboard.vue'),
+    meta: {
+      name: '概述',
+      icon: 'view-dashboard-outline',
+    },
   },
 ];
 

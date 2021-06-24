@@ -4,37 +4,39 @@
     @input="$emit('input', $event)"
   >
     <v-list dense nav>
-      <template v-for="menu in menus">
-        <v-list-item
-          v-if="menu.children === undefined"
-          :key="menu.name" :to="menu.url"
-        >
-          <v-list-item-icon>
-            <v-icon>mdi-{{ menu.icon }}</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>{{ menu.name }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <template v-else>
-          <v-subheader :key="menu.name">
-            {{ menu.name }}
-          </v-subheader>
-
+      <template v-for="route in $router.options.routes">
+        <template v-if="route.meta.inMenu !== false">
           <v-list-item
-            v-for="i in menu.children" :key="i.name"
-            :to="i.url"
+            v-if="route.children === undefined"
+            :key="route.path" :to="route.path" color="primary"
           >
             <v-list-item-icon>
-              <v-icon>mdi-{{ i.icon }}</v-icon>
+              <v-icon>mdi-{{ route.meta.icon }}</v-icon>
             </v-list-item-icon>
 
             <v-list-item-content>
-              <v-list-item-title>{{ i.name }}</v-list-item-title>
+              <v-list-item-title>{{ route.meta.name }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+
+          <template v-else>
+            <v-subheader :key="route.path">
+              {{ route.meta.name }}
+            </v-subheader>
+
+            <v-list-item
+              v-for="i in route.children" :key="route.path + '/' + i.path"
+              :to="route.path + '/' + i.path" color="primary"
+            >
+              <v-list-item-icon>
+                <v-icon>mdi-{{ i.meta.icon }}</v-icon>
+              </v-list-item-icon>
+
+              <v-list-item-content>
+                <v-list-item-title>{{ i.meta.name }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </template>
         </template>
       </template>
     </v-list>
@@ -55,28 +57,17 @@ export default class TheMenu extends Vue {
 
   private readonly menus: Menu[] = [
     {
-      name: '概述',
-      url: '/dashboard',
-      icon: 'view-dashboard-outline',
-    },
-    {
       name: '搜索',
       url: '/',
       icon: 'magnify',
     },
     {
       name: '设置',
-      url: '/',
       children: [
         {
           name: '常用设置',
           url: '/',
           icon: 'cog-outline',
-        },
-        {
-          name: '站点设置',
-          url: '/',
-          icon: 'earth',
         },
         {
           name: '下载设置',
