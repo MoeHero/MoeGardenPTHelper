@@ -4,11 +4,7 @@
 
     <TheMenu v-model="drawerShow"/>
 
-    <v-main>
-      <v-container fluid>
-        <router-view/>
-      </v-container>
-    </v-main>
+    <TheMain/>
   </v-app>
 </template>
 
@@ -17,11 +13,13 @@ import { Component, Vue } from 'vue-property-decorator';
 
 import TheMenu from './views/_Layouts/TheMenu.vue';
 import TheHeader from './views/_Layouts/TheHeader.vue';
+import TheMain from './views/_Layouts/TheMain.vue';
 
 @Component({
   components: {
     TheMenu,
     TheHeader,
+    TheMain,
   },
 })
 export default class App extends Vue {

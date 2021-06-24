@@ -1,5 +1,8 @@
 <template>
-  <v-app-bar app clipped-left>
+  <v-app-bar
+    app clipped-left
+    dark color="primary"
+  >
     <v-app-bar-nav-icon @click.stop="$emit('change-mode')"/>
 
     <v-app-bar-title>
