@@ -1,13 +1,11 @@
 <template>
   <v-main>
     <v-container fluid>
-      <v-card flat>
-        <v-breadcrumbs :items="breadcrumbs">
-          <template v-slot:divider>
-            <v-icon>mdi-chevron-right</v-icon>
-          </template>
-        </v-breadcrumbs>
-      </v-card>
+      <v-breadcrumbs :items="breadcrumbs">
+        <template v-slot:divider>
+          <v-icon>mdi-chevron-right</v-icon>
+        </template>
+      </v-breadcrumbs>
 
       <router-view/>
     </v-container>
@@ -38,3 +36,9 @@ export default class MainLayout extends Vue {
   }
 }
 </script>
+
+<style>
+.v-breadcrumbs {
+  padding: 5px 5px 12px !important;
+}
+</style>
